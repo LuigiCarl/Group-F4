@@ -10,44 +10,120 @@
 
 <body>
   <header>
-    <div class="logo">
-      <img src="img/No_image_available.svg.png" alt="Sample Picture">
+    <!-- <div class="logo">
+      <img id="logoimg" src="img/No_image_available.png" alt="Sample Picture">
       <h1>Logo</h1>
-    </div>    
+    </div>     -->
+    <div class="logo">
+      <div class="logo-container">
+        <img id="logoimg" src="img/No_image_available.png" alt="Sample Picture">
+        <div class="textlogo">
+          <h1>Logo</h1>
+        </div>
+      </div>
+    </div>
 
     <nav class="nav">
-      <a href="#home">Home</a> |
-      <a href="#about">About</a> |
-      <a href="#services">Services</a> |
+      <a href="#home">Home</a> 
+      <a href="#about">About</a> 
+      <a href="#services">Services</a> 
       <a href="#contact">Contact</a>
       <span class="burger">&#9776</span>
     </nav>
   </header>
-  <hr>
-  
+
   <main>
-    <section id="home">
+    <!-- <section class="home">
       <h2>Welcome to our static website</h2>
-      <p>kajhdhauhfdchgagfyg</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, cumque, dolorum nobis eum fuga tenetur harum modi nam reiciendis esse dolore, ex quos minus aspernatur eaque cupiditate similique? Aspernatur, rem.</p>
 
       <img src="img/no-images-1.png" alt="Sample Picture">
-    </section><hr>
+    </section><hr> -->
+    <section class="home">
+      <div class="container">
+        <div class="content">
+          <div class="text">
+            <h2>Welcome to our static website</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, cumque, dolorum nobis eum fuga tenetur harum modi nam reiciendis esse dolore, ex quos minus aspernatur eaque cupiditate similique? Aspernatur, rem.</p>
+          </div>
+          <div class="image">
+            <img src="img/no-images-1.png" alt="Home Image">
+        </div>
+      </div>
+    </section>
 
-    <section id="about">
+    <!-- <section class="about">
       <h2>About</h2>
       <p>This is the about section of the site.</p>
-    </section><hr>
+    </section><hr> -->
 
-    <section id="contact">
+    <section class="about">
+      <div class="container">
+        <div class="content">
+          <div class="text">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum excepturi unde fugiat nihil, fugit voluptatem nobis, libero alias veniam suscipit facilis hic facere soluta, quos magni asperiores quibusdam magnam quidem.</p>
+          </div>
+          <div class="image">
+            <img src="img/no-images-1.png" alt="About Image">
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- <section class="contact">
       <h2>Contact</h2>
       <p>Email: example@example.com</p>
-    </section><hr>
+    </section><hr> -->
 
-     <section id="services">
+    <section class="contact">
+      <div class="container">
+        <div class="content">
+          <div class="text">
+            <h2>Email us</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum excepturi unde fugiat nihil, fugit voluptatem nobis, libero alias veniam suscipit facilis hic facere soluta, quos magni asperiores quibusdam magnam quidem.
+            </p>
+            <input type="text" placeholder="Your Email">
+            <input type="text" placeholder="message">
+            <button type="submit">Submit</button>
+          </div>
+          <div class="image">
+            <img src="img/no-images-1.png" alt="About Image">
+        </div>
+      </div>
+    </section>
+
+
+
+     <!-- <section class="services">
       <h2>Services</h2>
       <p>This is the service section of the site.</p>
-    </section>
-  </main><hr>
+    </section> -->
+    <section class="services">
+      <div class="container">
+        <div class="service-content">
+          <div class="text">
+            <h2>Our Services</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum excepturi unde fugiat nihil, fugit voluptatem nobis, libero alias veniam suscipit facilis hic facere soluta, quos magni asperiores quibusdam magnam quidem.</p>
+          </div>
+          <div class="services-list">
+            <ul>
+              <li>Service 1
+                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+                </p>
+              </li>
+              <li>Service 2
+                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+                </p>
+              </li>
+              <li>Service 3
+                <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+                </p>
+              </li>
+            </ul>
+          </div>
+      </div>
+  </main>
 
   <footer>
     <p>&copy; 2025 Static Website</p>
