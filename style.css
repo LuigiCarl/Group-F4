@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif;
+  margin: 0;
 }
 
 header {
@@ -55,6 +56,31 @@ nav a:hover {
   cursor: pointer;
   display: none;
 }
+/* Button Section */
+.btn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  align-items: center;
+}
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.emailph, .messageph {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
   nav a {
     display: none;
