@@ -277,7 +277,11 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 180px;
+  width: 22%;
+  min-width: 180px;
+  max-width: 240px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .team-member-img {
@@ -294,12 +298,43 @@ img {
   font-size: 15px;
 }
 
+@media (max-width: 1024px) {
+  .team-members {
+    gap: 24px;
+  }
+  .team-member {
+    width: 40%;
+    max-width: 320px;
+  }
+}
+
 @media (max-width: 768px) {
   .team-members {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
   }
   .team-member {
+    width: 90%;
+    max-width: 350px;
+  }
+  .team-member-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-member {
     width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .team-member-img {
+    width: 80px;
+    height: 80px;
+  }
+  .team-member-desc {
+    font-size: 14px;
   }
 }
