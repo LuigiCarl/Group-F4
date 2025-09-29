@@ -18,6 +18,15 @@
   --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
   --border-radius: 12px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Enhanced Design Variables */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  --gradient-secondary: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  --gradient-bg: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --blur-bg: rgba(255, 255, 255, 0.95);
+  --section-padding: 120px 0;
+  --container-padding: 0 40px;
+  --max-width: 1400px;
 }
 
 html {
@@ -27,7 +36,28 @@ html {
 body {
   line-height: 1.6;
   color: var(--text-dark);
-  background: var(--white);
+  background: var(--gradient-bg);
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 9999;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  width: 0%;
+  transition: width 0.3s ease;
 }
 header {
   position: fixed;
@@ -36,18 +66,19 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 15px 40px;
+  padding: 20px 60px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: var(--shadow);
+  background: var(--blur-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(37, 95, 56, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   z-index: 1000;
   transition: var(--transition);
 }
 
 header:hover {
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
 }
 
 .logo .logo-container {
@@ -55,32 +86,74 @@ header:hover {
   align-items: center;
   justify-content: center;
   height: 50px;
+  position: relative;
+}
+
+.logo .logo-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  right: -15px;
+  bottom: -10px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  opacity: 0;
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.logo .logo-container:hover::before {
+  opacity: 0.1;
 }
 
 .tech-logo {
   font-family: 'Orbitron', monospace;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--text-dark), var(--primary-color));
+  background: var(--gradient-secondary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: default;
   position: relative;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  transition: var(--transition);
+}
+
+.tech-logo:hover {
+  transform: scale(1.05);
 }
 
 .f4-highlight {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 900;
+  position: relative;
+  display: inline-block;
+}
+
+.f4-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.tech-logo:hover .f4-highlight::after {
+  transform: scaleX(1);
 }
 nav {
   margin-right: 0;
@@ -102,16 +175,19 @@ nav a {
 nav a:before {
   content: '';
   position: absolute;
-  bottom: -5px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transition: var(--transition);
 }
 
 nav a:hover {
   color: var(--primary-color);
+  transform: translateY(-2px);
 }
 
 nav a:hover:before {
@@ -145,26 +221,43 @@ nav a.btn:hover {
 
 /* Enhanced Button Styles */
 .btn {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background: var(--gradient-primary);
   color: white;
-  padding: 12px 24px;
+  padding: 14px 32px;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   display: inline-block;
   transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(37, 95, 56, 0.3);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(31, 125, 83, 0.4);
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(37, 95, 56, 0.4);
+  background: var(--gradient-secondary);
 }
 
 .btn:active {
@@ -427,25 +520,40 @@ html {
 
 /* Enhanced Section Styles */
 .container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 80px 40px;
+  padding: var(--section-padding);
+  padding-left: 60px;
+  padding-right: 60px;
   position: relative;
   overflow: hidden;
 }
 
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(37, 95, 56, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(31, 125, 83, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .container:nth-child(even) {
-  background: linear-gradient(135deg, var(--background-light) 0%, var(--white) 100%);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
 
 .container:nth-child(odd) {
-  background: var(--white);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 250, 251, 0.8) 100%);
 }
 
 .content {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 80px;
   margin: 0 auto;
   animation: fadeInUp 0.8s ease-out;
   position: relative;
@@ -471,34 +579,49 @@ html {
 }
 
 .text h2 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--text-dark), var(--primary-color));
+  font-size: 3.8rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  background: var(--gradient-secondary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.2;
+  line-height: 1.1;
   position: relative;
   display: inline-block;
+  letter-spacing: -0.02em;
 }
 
 .text h2::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 0;
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  border-radius: 2px;
+  width: 120px;
+  height: 5px;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+  animation: slideInLine 0.8s ease-out 0.5s both;
+}
+
+@keyframes slideInLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 120px;
+    opacity: 1;
+  }
 }
 
 .text p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--text-light);
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   line-height: 1.8;
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 .image {
@@ -509,19 +632,40 @@ html {
   position: relative;
 }
 
+.image::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: var(--gradient-primary);
+  border-radius: 30px;
+  opacity: 0.1;
+  z-index: -1;
+  transition: var(--transition);
+}
+
+.image:hover::before {
+  opacity: 0.2;
+  transform: scale(1.02);
+}
+
 .image img {
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
   height: auto;
-  border-radius: 20px;
+  border-radius: 25px;
   transition: var(--transition);
-  filter: drop-shadow(0 15px 35px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 20px 40px rgba(37, 95, 56, 0.15));
   border: none;
+  position: relative;
+  z-index: 1;
 }
 
 .image img:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.15));
+  transform: translateY(-10px) scale(1.03);
+  filter: drop-shadow(0 30px 60px rgba(37, 95, 56, 0.25));
 }
 
 /* Enhanced Home Section */
@@ -631,15 +775,33 @@ html {
 }
 
 .services-list li {
-  background: var(--white);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
   color: var(--text-dark);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(31, 125, 83, 0.1);
+  padding: 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0 15px 50px rgba(37, 95, 56, 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(37, 95, 56, 0.1);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.services-list li::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--gradient-primary) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.services-list li:hover::after {
+  opacity: 0.05;
 }
 
 .services-list li:before {
@@ -648,10 +810,10 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  height: 6px;
+  background: var(--gradient-primary);
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .services-list li:hover:before {
@@ -659,8 +821,8 @@ html {
 }
 
 .services-list li:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  transform: translateY(-20px) scale(1.02);
+  box-shadow: 0 35px 80px rgba(37, 95, 56, 0.2);
   border-color: var(--primary-color);
 }
 

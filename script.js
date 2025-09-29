@@ -1,5 +1,20 @@
 // Enhanced website functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Scroll Progress Indicator
+    const progressBar = document.querySelector('.progress-bar');
+    
+    function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / documentHeight) * 100;
+        
+        if (progressBar) {
+            progressBar.style.width = scrollPercent + '%';
+        }
+    }
+    
+    window.addEventListener('scroll', updateScrollProgress);
+
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
