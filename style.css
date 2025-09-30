@@ -207,6 +207,22 @@ nav a.btn:hover {
   color: white;
 }
 
+.sign-in-link {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  transition: var(--transition);
+  margin-right: 15px;
+}
+
+.sign-in-link:hover {
+  color: var(--accent-color) !important;
+  transform: translateY(-2px);
+}
+
+.sign-in-link:before {
+  display: none !important;
+}
+
 .burger {
   font-size: 24px;
   cursor: pointer;
@@ -313,6 +329,285 @@ nav a.btn:hover {
   min-height: 140px;
   resize: vertical;
   font-family: inherit;
+}
+
+/* Authentication Modals */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.7) translateY(-50px);
+  transition: transform 0.3s ease;
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.modal.show .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  padding: 30px 30px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(37, 95, 56, 0.1);
+  margin-bottom: 25px;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal-close:hover {
+  background: rgba(37, 95, 56, 0.1);
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 0 30px 30px 30px;
+}
+
+.modal-subtitle {
+  color: var(--text-light);
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-form .form-group {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.auth-form .form-group input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(37, 95, 56, 0.1);
+  border-radius: 12px;
+  font-size: 16px;
+  transition: var(--transition);
+  background: rgba(248, 250, 252, 0.5);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.auth-form .form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(37, 95, 56, 0.1);
+  transform: translateY(-2px);
+  background: var(--white);
+}
+
+.form-error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 5px;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-error.show {
+  opacity: 1;
+}
+
+.auth-form .checkbox-group {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(37, 95, 56, 0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+  background: var(--gradient-primary);
+  border-color: var(--primary-color);
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+  content: '✓';
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.terms-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
+.forgot-password {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.auth-switch a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Modal Responsive */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    margin: 20px auto;
+  }
+  
+  .modal-header {
+    padding: 25px 25px 0 25px;
+  }
+  
+  .modal-body {
+    padding: 0 25px 25px 25px;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .auth-form .form-group input {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  
+  .modal-btn {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+  
+  .checkbox-label {
+    font-size: 13px;
+  }
 }
 
 /* Scroll animations */
@@ -446,6 +741,10 @@ nav a.btn:hover {
   
   .burger {
     font-size: 20px;
+  }
+  
+  .sign-in-link {
+    display: none; /* Hide on mobile, will be in mobile menu */
   }
   
   .mobile-menu {

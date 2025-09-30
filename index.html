@@ -25,7 +25,8 @@
       <a href="#contact">Contact</a>
       <a href="#services">Services</a>
 
-      <a href="#signup" class="btn">Sign Up</a>
+      <a href="#" class="sign-in-link" id="signInModalBtn">Sign In</a>
+      <a href="#" class="btn" id="signUpModalBtn">Sign Up</a>
       <span class="burger">&#9776</span>
     </nav>
   </header>
@@ -133,6 +134,82 @@
         </div>
       </div>
     </section>
+
+    <!-- Authentication Modals -->
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signUpModal">
+      <div class="modal-overlay" id="signUpOverlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Create Your Account</h2>
+          <button class="modal-close" id="signUpClose">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-subtitle">Join our community of web development professionals</p>
+          <form class="auth-form" id="signUpForm">
+            <div class="form-group">
+              <input type="text" id="signUpUsername" name="username" placeholder="Username" required>
+              <span class="form-error" id="signUpUsernameError"></span>
+            </div>
+            <div class="form-group">
+              <input type="email" id="signUpEmail" name="email" placeholder="Email Address" required>
+              <span class="form-error" id="signUpEmailError"></span>
+            </div>
+            <div class="form-group">
+              <input type="password" id="signUpPassword" name="password" placeholder="Password" required>
+              <span class="form-error" id="signUpPasswordError"></span>
+            </div>
+            <div class="form-group">
+              <input type="password" id="signUpConfirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+              <span class="form-error" id="signUpConfirmPasswordError"></span>
+            </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="signUpTerms" name="terms" required>
+                <span class="checkmark"></span>
+                I agree to the <a href="#terms" class="terms-link">Terms of Service</a> and <a href="#privacy" class="terms-link">Privacy Policy</a>
+              </label>
+            </div>
+            <button type="submit" class="btn modal-btn">Create Account</button>
+            <p class="auth-switch">Already have an account? <a href="#" id="showSignIn">Sign In</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div class="modal" id="signInModal">
+      <div class="modal-overlay" id="signInOverlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Welcome Back</h2>
+          <button class="modal-close" id="signInClose">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-subtitle">Sign in to access your account</p>
+          <form class="auth-form" id="signInForm">
+            <div class="form-group">
+              <input type="email" id="signInEmail" name="email" placeholder="Email Address" required>
+              <span class="form-error" id="signInEmailError"></span>
+            </div>
+            <div class="form-group">
+              <input type="password" id="signInPassword" name="password" placeholder="Password" required>
+              <span class="form-error" id="signInPasswordError"></span>
+            </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <span class="checkmark"></span>
+                Remember me
+              </label>
+              <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn modal-btn">Sign In</button>
+            <p class="auth-switch">Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
 
       <!-- Our Team Section -->
       <section class="team" id="team">
